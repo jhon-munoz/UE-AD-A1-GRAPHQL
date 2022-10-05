@@ -24,6 +24,10 @@ movie.set_field('actors', r.resolve_actors_in_movie)
 query.set_field('actor_with_id', r.actor_with_id)
 
 query.set_field('all_movies', r.all_movies)
+mutation.set_field('create_movie', r.create_movie)
+mutation.set_field('delete_movie', r.delete_movie)
+query.set_field('movie_by_title', r.movie_by_title)
+query.set_field('movies_by_rating', r.movies_by_rating)
 
 schema = make_executable_schema(type_defs, movie, query, mutation, actor)
 ###

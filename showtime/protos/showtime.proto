@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+service Showtime {
+    rpc GetMoviesByDate(Date) returns (stream ShowtimeMovieId) {}
+    rpc GetListTimes(EmptyDate) returns (stream TimesData) {}
+}
+
+message Date {
+    string date = 1;
+}
+
+message ShowtimeMovieId {
+    string movieid = 1;
+}
+
+message TimesData {
+    string date = 1;
+    repeated string movies = 2;
+}
+
+message EmptyDate {
+}

@@ -5,7 +5,6 @@ import booking_pb2_grpc
 import showtime_pb2
 import showtime_pb2_grpc
 import json
-from google.protobuf.json_format import MessageToJson
 
 EMPTY_BOOKING_DATA = booking_pb2.BookingData(userid="", dates="")
 
@@ -35,6 +34,7 @@ class BookingServicer(booking_pb2_grpc.BookingServicer):
                 return booking_pb2.BookingFeedback(
                     message='Booking found!',
                     booking=booking_pb2.BookingData(**booking))
+
         print("Booking NOT found!")
         return booking_pb2.BookingFeedback(message='Booking not found!',
                                            booking=EMPTY_BOOKING_DATA)

@@ -4,8 +4,6 @@ import showtime_pb2
 import showtime_pb2_grpc
 import json
 
-EMPTY_TIME_DATA = showtime_pb2.TimesData(date="", movies="")
-
 
 class ShowtimeServicer(showtime_pb2_grpc.ShowtimeServicer):
 

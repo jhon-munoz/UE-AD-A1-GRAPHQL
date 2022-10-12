@@ -4,7 +4,7 @@ from ariadne.constants import PLAYGROUND_HTML
 from flask import Flask, request, jsonify, make_response
 import resolvers as r
 
-PORT = 3001
+PORT = 3301
 HOST = '0.0.0.0'
 app = Flask(__name__)
 
@@ -25,8 +25,8 @@ query.set_field('actor_with_id', r.actor_with_id)
 query.set_field('all_movies', r.all_movies)
 mutation.set_field('create_movie', r.create_movie)
 mutation.set_field('delete_movie', r.delete_movie)
-query.set_field('movie_by_title', r.movie_by_title)
-query.set_field('movies_by_rating', r.movies_by_rating)
+query.set_field('movie_with_title', r.movie_with_title)
+query.set_field('movies_above_rating', r.movies_above_rating)
 
 schema = make_executable_schema(type_defs, movie, query, mutation, actor)
 ###

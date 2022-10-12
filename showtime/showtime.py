@@ -14,14 +14,22 @@ class ShowtimeServicer(showtime_pb2_grpc.ShowtimeServicer):
             self.db = json.load(jsf)["schedule"]
 
     def GetMoviesByDate(self, request, context):
+        print('Request received for GetMoviesByDate')
+        print(f'Request message:\n{request}')
+
         for time in self.db:
             if time['date'] == request.date:
-                print("time found!")
+                print("Schedule found!")
                 for movieid in time['movies']:
+                    print(f'Yielding movieid {movieid}')
                     yield showtime_pb2.ShowtimeMovieId(movieid=movieid)
 
     def GetListTimes(self, request, context):
+        print('Request received for GetListTimes')
+        print(f'Request message:\n{request}')
+
         for time in self.db:
+            print(f'Yielding schedule {time}')
             yield showtime_pb2.TimesData(date=time['date'],
                                          movies=time['movies'])
 

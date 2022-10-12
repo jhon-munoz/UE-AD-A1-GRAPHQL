@@ -3,17 +3,16 @@ services:
   movie:
     build: ./movie/
     ports:
-      - "3001:3001"
+      - "3301:3301"
   showtime:
     build: ./showtime/
     ports:
-      - "3002:3002"
+      - "3302:3302"
   booking:
     build: ./booking/
     ports:
-      - "3003:3003"
+      - "3303:3303"
   user:
     build: ./user/
     ports:
-        - "3004:3004"
-
+        - "3203:3203"

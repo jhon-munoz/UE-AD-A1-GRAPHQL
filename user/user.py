@@ -10,8 +10,8 @@ import booking_pb2_grpc
 
 app = Flask(__name__)
 
-BOOKING = 'localhost:3003'
-MOVIE = 'http://localhost:3001/graphql'
+BOOKING = 'booking:3003'
+MOVIE = 'http://movie:3301/graphql'
 
 with open('{}/data/users.json'.format("."), "r") as jsf:
     users = json.load(jsf)["users"]
@@ -86,16 +86,12 @@ def get_user_bookings_by_id(userid):
             dates_by_movie[movieid].append(booking.date)
 
     bookings = []
-    query = """
-query {{
-    movie_with_id(_id: "{movieid}") {{
-        id
-        title
-        rating
-        director
-    }}
-}}
-    """
+    query = """query {{
+                  movie_with_id(_id: "{movieid}") {{
+                    ... on Movie {{ id title rating director actors {{ lastname }} }}
+                    ... on QueryFailure {{ message }}
+                  }}
+                }}"""
 
     for movieid, dates in dates_by_movie.items():
         response = requests.post(MOVIE,
